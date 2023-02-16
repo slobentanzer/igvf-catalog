@@ -67,6 +67,74 @@ emit_prefixes:
   - BIOGRID
   - SO
 
+## ------------------------
+## IGVF Specific Sub Classes
+## ------------------------
+
+  gencode gene:
+    description: >-
+      A region (or regions) that includes all of the sequence elements
+      necessary to encode a functional transcript. A gene locus may include
+      regulatory regions, transcribed regions and/or other
+      functional sequence regions, as defined by GECODE
+    is_a: gene
+    mixins:
+      - gene or gene product
+      - genomic entity
+      - chemical entity or gene or gene product
+      - physical essence
+      - ontology class
+    slots:
+      - symbol
+      - synonym
+      - xref
+      - start interbase coordinate
+      - end interbase coordinate
+
+    exact_mappings:
+      - SO:0000704
+      - SIO:010035
+      - WIKIDATA:Q7187
+      - dcid:Gene
+    id_prefixes:
+      - NCBIGene
+      - ENSEMBL
+      - HGNC
+      - MGI
+      - ZFIN
+      - dictyBase
+      - WB
+      - WormBase # we have two prefixes here as wormbase supports WormBase:WBGene00000898
+      # and alliancegenome.org and identifiers.org supports WB:WBGene00000898.
+      - FB
+      - RGD
+      - SGD
+      - PomBase
+      - OMIM
+      - KEGG.GENE ## org:gene
+      - UMLS
+      - Xenbase
+      - AspGD
+    in_subset:
+      - translator_minimal
+      - model_organism_database
+    narrow_mappings:
+      - bioschemas:gene
+    broad_mappings:
+      - NCIT:C45822
+    label_in_input: gencode_gene
+    represented_as: node
+    db_collection_name: gencode_gene
+    db_collection_per_chromosome: true
+    properties:
+      chr: str
+      start: str
+      end: str
+      gene_name: str
+      gene_id: str
+      gene_type: str
+
+
 ## ------------
 ## TYPES
 ## ------------
@@ -1845,8 +1913,6 @@ slots:
     range: biological entity
     multivalued: true
     inverse: has phenotype
-
-
 
   has sequence location:
     is_a: related to at instance level
